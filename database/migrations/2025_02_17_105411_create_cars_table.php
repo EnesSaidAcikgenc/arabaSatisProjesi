@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('model_id');
             $table->unsignedBigInteger('damage_id');
-            $table->unsignedInteger('year',1900);
+            $table->unsignedInteger('year');
             $table->string('color');
             $table->unsignedInteger('km');
             $table->boolean('guarentee_status')->default(0);
