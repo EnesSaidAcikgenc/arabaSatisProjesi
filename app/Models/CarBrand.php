@@ -13,6 +13,10 @@ class CarBrand extends Model
     protected $table = 'car_brands';
 
     protected $fillable = ['name'];
+
+    public function getModels(){
+        return $this->hasMany(CarModel::class, 'brand_id','id');
+    }
 }
 
 
