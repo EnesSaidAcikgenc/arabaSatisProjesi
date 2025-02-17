@@ -9,4 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class CarBrand extends Model
 {
     use HasFactory, SoftDeletes;
+
+    protected $table = 'car_brands';
+
+    protected $fillable = ['name'];
 }
+
+
