@@ -26,3 +26,9 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+/* TEST ROUTE */
+Route::get('/test', function () {
+    return view('panel.layout.app');
+});

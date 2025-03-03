@@ -19,17 +19,45 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input): User
     {
+
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
+            'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
         ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+        //referans no kontrol
+        if($input['reference']==='CODE23'){
+            return User::create([
+                'name' => $input['name'],
+                'surname' => $input['surname'],
+                'email' => $input['email'],
+                'password' => Hash::make($input['password']),
+            ]);
+        }else{
+           abort(403);
+        }
+
+
+//        $user = User::created([
+//            'name' => $input['name'],
+//            'surname' => $input['surname'],
+//            'email' => $input['email'],
+//            'password' => Hash::make($input['password']),
+//        ]);
+//
+//        return $user; ---> bu yapı ile bizim aşşağıda yaptığımız yapı ve jetstreamin kendi yapısı ile aynı yapıdır.
+
+//        $user = new User();
+//        $user->name = $input['name'];
+//        $user->surname = $input['surname'];
+//        $user->email = $input['email'];
+//        $user->password = Hash::make($input['password']);
+//        $user->save();
+
+
+
     }
 }
